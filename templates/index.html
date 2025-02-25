@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload & View Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .image-box {
+            width: 220px;
+            text-align: center;
+        }
+        .image-box img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .image-box img:hover {
+            transform: scale(1.05);
+        }
+        .image-box a {
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upload an Image</h1>
+    <form method="post" enctype="multipart/form-data" action="/upload">
+        <input type="file" name="form_file" accept="image/jpeg, image/png" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Uploaded Images</h2>
+
+        {% for image in images %}
+                <!-- 🔗 Clickable Image: Opens full-size in new tab -->
+                <a href="/files/{{ image }}" target="_blank">
+                    {{ image }}
+                </a>
+                <br>
+        
+        {% endfor %}
+    
+
+</body>
+</html>
